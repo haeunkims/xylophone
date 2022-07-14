@@ -19,9 +19,14 @@ class ViewController: UIViewController {
 
 
     @IBAction func keyPressed(_ sender: UIButton) {
-        //find sender.color
-        //call changeColor && delay 2 seconds
         playSound(sounds: sender.currentTitle!);
+        //opacity to half
+        sender.alpha = 0.5
+        //Code should execute after 0.2 second delay.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            //Bring's sender's opacity back up to fully opaque.
+            sender.alpha = 1.0
+        }
     }
     func playSound(sounds:String) {
         let url = Bundle.main.url(forResource: sounds , withExtension: "wav")
@@ -29,6 +34,5 @@ class ViewController: UIViewController {
             player.play()
 
         }
-    // func changeColor by half when pressed
 }
 
